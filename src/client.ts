@@ -1,3 +1,4 @@
+export {};
 const { Client } = require("pg");
 const log = require("./utilities/logger");
 
