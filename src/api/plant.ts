@@ -7,11 +7,13 @@ export default async function getAllPlants() {
 
   try {
     const response = await client.query({ text: `SELECT * FROM plants` });
-    if (!response) {
+    if (response.rows.length === 0) {
       throw new Error("Could not fetch plants");
     }
     return response.rows;
   } catch (error) {
     log.error({ category: "BD", msg: error });
+  } finally {
+    await client.close();
   }
 }
